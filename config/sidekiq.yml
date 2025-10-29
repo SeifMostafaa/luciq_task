@@ -1,0 +1,27 @@
+# Sidekiq configuration
+:concurrency: <%= ENV.fetch('SIDEKIQ_CONCURRENCY', 5).to_i %>
+:queues:
+  - default
+  - low_priority
+
+# Redis connection
+:redis:
+  url: <%= ENV.fetch('REDIS_URL', 'redis://localhost:6379/0') %>
+  namespace: <%= ENV.fetch('REDIS_NAMESPACE', 'chat_system_sidekiq') %>
+
+# Retry settings
+:max_retries: 5
+:retry_delay: 5
+
+# Logging
+:verbose: true
+:logfile: ./log/sidekiq.log
+
+# Scheduled jobs
+:scheduler:
+  :schedule:
+    count_update_job:
+      cron: "*/20 * * * * Africa/Cairo" # Every 20 minutes (It takes care of daylight saving time automatically)
+      class: "CountUpdateJob"
+      queue: low_priority
+      description: "This job queues for updating applications and chats counts"

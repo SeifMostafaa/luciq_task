@@ -1,0 +1,14 @@
+#!/bin/bash -e
+
+# If running the rails server then create or migrate existing database
+if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
+  echo "🔧 Preparing database..."
+  ./bin/rails db:create db:migrate
+  
+  echo "🌱 Checking if seeding is needed..."
+  ./bin/rails db:seed
+  
+  echo "✅ Database ready!"
+fi
+
+exec "${@}"

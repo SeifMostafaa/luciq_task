@@ -1,0 +1,39 @@
+# Ignore git files
+.git
+.gitignore
+
+# Ignore local environment files
+.env
+.env.local
+
+# Ignore log files
+log/*
+*.log
+
+# Ignore temporary files
+tmp/*
+storage/*
+
+# Ignore test files
+test/
+spec/
+
+# Ignore documentation
+README.md
+doc/
+
+# Ignore node modules if any
+node_modules/
+
+# Ignore bundler config
+.bundle
+
+# Ignore IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
